@@ -1,0 +1,6 @@
+电铲信息管理: "xpath==//aside/div/ul/li[3]/ul/li[1]/div"
+卸点信息管理: "xpath==//aside/div/ul/li[3]/ul/li[2]/div"
+卡车信息管理: "xpath==//aside/div/ul/li[3]/ul/li[3]/div"
+班组管理: "xpath==//aside/div/ul/li[3]/ul/li[4]/span"
+班次管理: "xpath==//aside/div/ul/li[3]/ul/li[5]/span"
+司机管理: "xpath==//aside/div/ul/li[3]/ul/li[6]/span"

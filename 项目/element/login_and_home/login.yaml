@@ -1,0 +1,6 @@
+账号: "xpath==//input[contains(@type,'text')]"
+密码: "xpath==//input[contains(@type,'password')]"
+登录: "xpath==//button[contains(@type,'button')]"
+账号空: "xpath==//*[@class='login-main']/form/div[1]/div/div[2]"
+密码空: "xpath==//*[@class='login-main']/form/div[2]/div/div[2]"
+错误提示: "xpath==//*[@role='alert']/p"
