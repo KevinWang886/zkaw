@@ -2,6 +2,7 @@ import time
 import pytest
 import allure
 import random
+from base.base import Base
 
 
 class TestExcavatorBaseInfo():
@@ -10,8 +11,10 @@ class TestExcavatorBaseInfo():
     def open_page(self, login, home, go_to_excavator_management, excavator_base_info):
         login.open("/truck-dispatch/?#/login")
         time.sleep(0.5)
-        login.input_account("wcy")
-        login.input_password("123456")
+        login.input_account(Base.get_data(login, file_name='test_excavator_base_info.yaml')
+                            ['test_excavator_base_info']['account'])
+        login.input_password(Base.get_data(login, file_name='test_excavator_base_info.yaml')
+                             ['test_excavator_base_info']['password'])
         login.click_login_btn()
         time.sleep(0.5)
         with allure.step("设备基础信息管理"):
@@ -29,12 +32,16 @@ class TestExcavatorBaseInfo():
     @allure.title("查询电铲")
     def test_search_excavator(self, excavator_base_info):
         with allure.step("输入电铲名称"):
-            excavator_base_info.input_excavator_name("B01")
+            excavator_base_info.input_excavator_name(
+                Base.get_data(excavator_base_info, file_name='test_excavator_base_info.yaml')
+                ['test_excavator_base_info']['excavator_name'])
         with allure.step("点击【查询】按钮"):
             excavator_base_info.click_search_btn()
             time.sleep(0.5)
         with allure.step("断言：查询结果"):
-            assert excavator_base_info.get_excavator_name() == 'B01'
+            assert excavator_base_info.get_excavator_name() == \
+                   Base.get_data(excavator_base_info, file_name='test_excavator_base_info.yaml')\
+                       ['test_excavator_base_info']['excavator_name']
 
     @allure.severity("blocker")
     @allure.story("电铲基本信息")
@@ -53,7 +60,9 @@ class TestExcavatorBaseInfo():
         with allure.step("点击【确定】按钮"):
             excavator_base_info.click_confirm_btn()
         with allure.step("断言：操作成功！"):
-            assert excavator_base_info.get_alert_msg() == "操作成功"
+            assert excavator_base_info.get_alert_msg() == \
+                   Base.get_data(excavator_base_info, file_name='test_excavator_base_info.yaml')\
+                       ['test_excavator_base_info']['success_tip']
         time.sleep(1)
 
 
