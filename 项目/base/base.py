@@ -7,19 +7,18 @@ from selenium.common.exceptions import ElementNotVisibleException
 from selenium.common.exceptions import TimeoutException
 import os
 import yaml
-
 from common import log
 from config.conf import TEST_DATA_PATH
 
 """封装selenium基本操作"""
 
 
-class LocatorTypeError(Exception):
-    pass
-
-
-class ElementNotFound(Exception):
-    pass
+# class LocatorTypeError(Exception):
+#     pass
+#
+#
+# class ElementNotFound(Exception):
+#     pass
 
 
 class Base():
@@ -41,26 +40,26 @@ class Base():
     def find(self, locator):
         """locator必须是元祖类型：loc = ('id','value1') 定位到元素，返回元素对象，没定位到，Timeout异常"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         else:
             log.logger("正在定位元素信息：定位方式->%s,value值->%s" % (locator[0], locator[1]))
             try:
                 ele = WebDriverWait(self.driver, self.timeout, self.t).until(EC.presence_of_element_located(locator))
             except TimeoutException as msg:
-                raise ElementNotFound("定位元素出现超时！！！！，不要盯着报错看了，也不用截图贴群里了，"
+                raise log.logger("定位元素出现超时！！！！，不要盯着报错看了，也不用截图贴群里了，"
                                       "先把定位技术学好，别复制粘贴xpath, 请检查你的定位方式，在浏览器先调试成功，观察页面是否正常打开")
             return ele
 
     def finds(self, locator):
         '''复数定位，返回elements对象 list  '''
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         else:
             log.logger("正在定位元素信息：定位方式->%s,value值->%s" % (locator[0], locator[1]))
             eles = WebDriverWait(self.driver, self.timeout, self.t).until(EC.presence_of_all_elements_located(locator))
             return eles
 
-    def send(self, locator, text=''):
+    def send(self, locator, text):
         '''发送文本'''
         ele = self.find(locator)
         if ele.is_displayed():
@@ -95,7 +94,7 @@ class Base():
         except:
             return False
 
-    def is_title(self, title=''):
+    def is_title(self, title):
         """返回bool值"""
         try:
             result = WebDriverWait(self.driver, self.timeout, self.t).until(EC.title_is(title))
@@ -103,7 +102,7 @@ class Base():
         except:
             return False
 
-    def is_title_contains(self, title=''):
+    def is_title_contains(self, title):
         """返回bool值"""
         try:
             result = WebDriverWait(self.driver, self.timeout, self.t).until(EC.title_contains(title))
@@ -111,22 +110,24 @@ class Base():
         except:
             return False
 
-    def is_text_in_element(self, locator, text=''):
+    def is_text_in_element(self, locator, text):
         """返回bool值"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         try:
-            result = WebDriverWait(self.driver, self.timeout, self.t).until(EC.text_to_be_present_in_element(locator, text))
+            result = WebDriverWait(self.driver, self.timeout, self.t).until(
+                EC.text_to_be_present_in_element(locator, text))
             return result
         except:
             return False
 
-    def is_value_in_element(self, locator, value=''):
+    def is_value_in_element(self, locator, value):
         """返回bool值，value为空字符串，返回False"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         try:
-            result = WebDriverWait(self.driver, self.timeout, self.t).until(EC.text_to_be_present_in_element_value(locator, value))
+            result = WebDriverWait(self.driver, self.timeout, self.t).until(
+                EC.text_to_be_present_in_element_value(locator, value))
             return result
         except:
             return False
@@ -146,7 +147,7 @@ class Base():
     def get_text(self, locator):
         """获取文本"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         try:
             t = self.find(locator).text
             return t
@@ -157,7 +158,7 @@ class Base():
     def get_attribute(self, locator, name):
         """获取属性"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         try:
             element = self.find(locator)
             return element.get_attribute(name)
@@ -168,7 +169,7 @@ class Base():
     def js_focus_element(self, locator):
         """聚焦元素"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         target = self.find(locator)
         self.driver.execute_script("arguments[0].scrollIntoView();", target)
 
@@ -185,14 +186,14 @@ class Base():
     def select_by_index(self, locator, index=0):
         """通过索引，index是索引第几个，从0开始，默认第一个"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         element = self.find(locator)
         Select(element).select_by_index(index)
 
     def select_by_value(self, locator, value):
         """通过value属性"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         element = self.find(locator)
         Select(element).select_by_value(value)
 
@@ -247,16 +248,9 @@ class Base():
     def move_to_element(self, locator):
         """鼠标悬停操作"""
         if not isinstance(locator, tuple):
-            raise LocatorTypeError("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         ele = self.find(locator)
         ActionChains(self.driver).move_to_element(ele).perform()
-
-    def _capture_screenshot(self):
-        '''
-        截图保存为base64
-        :return:
-        '''
-        return driver.get_screenshot_as_base64()
 
     def get_data(self, file_name):  # 获取测试用例测试数据的yaml文件
         yaml_path = os.path.join(TEST_DATA_PATH, file_name)
@@ -264,13 +258,13 @@ class Base():
         data = yaml.safe_load(file)
         return data
 
-
-if __name__ == "__main__":
-    driver = webdriver.Chrome()
-    web = Base(driver)  # 实例化
-    driver.get("https://www.baidu.com")
-    loc_1 = ("id", "kw")
-    web.send(loc_1, "hello")
-
-    # Python is likely shutting down
-    driver.close()
+#
+# if __name__ == "__main__":
+#     driver = webdriver.Chrome()
+#     web = Base(driver)  # 实例化
+#     driver.get("https://www.baidu.com")
+#     loc_1 = ("id", "kw")
+#     web.send(loc_1, "hello")
+#
+#     # Python is likely shutting down
+#     driver.close()
