@@ -1,6 +1,7 @@
 from base.base import Base
 from common.readelement import Element
 import allure
+import random
 
 excavator_base_info = Element('device_base_info', 'excavator_base_info')
 
@@ -56,6 +57,30 @@ class ExcavatorBaseInfoPage(Base):
     @allure.step("输入定位设备编码")
     def input_device_loc_no(self, device_loc_no):
         self.send(excavator_base_info['定位设备编码'], device_loc_no)
+
+    @allure.step("点击电铲类型下拉箭头")
+    def click_excavator_kind_arrow(self):
+        self.click(excavator_base_info['下拉箭头'])
+
+    @allure.step("选择电铲类型")
+    def select_excavator_kind(self):
+        excavator_kind = random.randint(1, 5)
+        if excavator_kind == 1:
+            self.click(excavator_base_info['下拉选项-大铲车'])
+        elif excavator_kind == 2:
+            self.click(excavator_base_info['下拉选项-小铲车'])
+        elif excavator_kind == 3:
+            self.click(excavator_base_info['下拉选项-中型铲'])
+        else:
+            self.click(excavator_base_info['下拉选项-巨型铲'])
+
+    @allure.step("选择电铲状态")
+    def select_excavator_status(self):
+        excavator_status = random.randint(1, 3)
+        if excavator_status == 1:
+            self.click(excavator_base_info['禁用'])
+        else:
+            self.click(excavator_base_info['启用'])
 
     @allure.step("点击【取消】按钮")
     def click_cancel_btn(self):
