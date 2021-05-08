@@ -31,29 +31,29 @@ class TestExcavatorBaseInfo():
     @allure.story("电铲基本信息")
     @allure.title("新增电铲")
     def test_add_new_excavator(self, excavator_base_info):
-        with allure.step("点击新增按钮"):
+        with allure.step("1、点击新增按钮"):
             excavator_base_info.click_add_btn()
         time.sleep(0.5)
-        with allure.step("输入电铲编号"):
+        with allure.step("2、输入电铲编号"):
             excavator_base_info.input_excavator_no(excavator_no=random.randint(10000, 99999))
-        with allure.step("输入电铲名称"):
+        with allure.step("3、输入电铲名称"):
             excavator_base_info.input_excavator(excavator="电铲" + str(random.randint(10000, 99999)))
-        with allure.step("修改铲斗容量"):
+        with allure.step("4、修改铲斗容量"):
             excavator_base_info.input_excavator_volume(volume=random.randint(10, 100))
-        with allure.step("修改区域半径"):
+        with allure.step("5、修改区域半径"):
             excavator_base_info.input_radius(radius=random.randint(10, 20))
-        with allure.step("修改小圆半径"):
+        with allure.step("6、修改小圆半径"):
             excavator_base_info.input_cricle_radius(cricle_radius=random.randint(5, 10))
-        with allure.step("输入定位设备编码"):
+        with allure.step("7、输入定位设备编码"):
             excavator_base_info.input_device_loc_no(device_loc_no=random.randint(5, 10))
-        with allure.step("选择电铲类型"):
+        with allure.step("8、选择电铲类型"):
             excavator_base_info.click_excavator_kind_arrow()
             time.sleep(0.5)
             excavator_base_info.select_excavator_kind()
         time.sleep(0.5)
-        with allure.step("点击【确定】按钮"):
+        with allure.step("9、点击【确定】按钮"):
             excavator_base_info.click_confirm_btn()
-        with allure.step("断言：操作成功！"):
+        with allure.step("10、断言：操作成功！"):
             assert excavator_base_info.get_alert_msg() == \
                    Base.get_data(excavator_base_info, file_name='test_excavator_base_info.yaml')\
                        ['test_excavator_base_info']['success_tip']
@@ -63,14 +63,14 @@ class TestExcavatorBaseInfo():
     @allure.story("电铲基本信息")
     @allure.title("查询电铲")
     def test_search_excavator(self, excavator_base_info):
-        with allure.step("输入电铲名称"):
+        with allure.step("1、输入电铲名称"):
             excavator_base_info.input_excavator_name(
                 Base.get_data(excavator_base_info, file_name='test_excavator_base_info.yaml')
                 ['test_excavator_base_info']['excavator_name'])
-        with allure.step("点击【查询】按钮"):
+        with allure.step("2、点击【查询】按钮"):
             excavator_base_info.click_search_btn()
             time.sleep(0.5)
-        with allure.step("断言：查询结果"):
+        with allure.step("3、断言：查询结果"):
             assert excavator_base_info.get_excavator_name() == \
                    Base.get_data(excavator_base_info, file_name='test_excavator_base_info.yaml')\
                        ['test_excavator_base_info']['excavator_name']
@@ -79,19 +79,19 @@ class TestExcavatorBaseInfo():
     @allure.story("电铲基本信息")
     @allure.title("修改电铲")
     def test_modify_excavator(self, excavator_base_info):
-        with allure.step("点击“修改"):
+        with allure.step("1、点击“修改"):
             excavator_base_info.click_modify_excavator()
         time.sleep(0.5)
-        with allure.step("修改铲斗容量"):
+        with allure.step("2、修改铲斗容量"):
             excavator_base_info.input_excavator_volume(volume=random.randint(10, 100))
-        with allure.step("修改区域半径"):
+        with allure.step("3、修改区域半径"):
             excavator_base_info.input_radius(radius=random.randint(10, 20))
-        with allure.step("修改小圆半径"):
+        with allure.step("4、修改小圆半径"):
             excavator_base_info.input_cricle_radius(cricle_radius=random.randint(5, 10))
             time.sleep(0.5)
-        with allure.step("点击【确定】按钮"):
+        with allure.step("5、点击【确定】按钮"):
             excavator_base_info.click_confirm_btn()
-        with allure.step("断言：操作成功！"):
+        with allure.step("6、断言：操作成功！"):
             assert excavator_base_info.get_alert_msg() == \
                    Base.get_data(excavator_base_info, file_name='test_excavator_base_info.yaml')\
                        ['test_excavator_base_info']['success_tip']
