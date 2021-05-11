@@ -7,11 +7,27 @@ excavator_base_info = Element('device_base_info', 'excavator_base_info')
 
 
 class ExcavatorBaseInfoPage(Base):
-    """设备基础信息管理类"""
+    """电铲基本信息管理类"""
 
     @allure.step("点击电铲基本信息")
     def click_excavator_base_info(self):
         self.click(excavator_base_info['电铲基本信息'])
+
+    @allure.step("点击电铲物料维护")
+    def click_excavator_kind(self):
+        self.click(excavator_base_info['电铲物料维护'])
+
+    @allure.step("点击电铲状态维护")
+    def click_excavator_status(self):
+        self.click(excavator_base_info['电铲状态维护'])
+
+    @allure.step("点击禁止卸点维护")
+    def click_excavator_prohibat_uploading(self):
+        self.click(excavator_base_info['禁止卸点维护'])
+
+    @allure.step("点击锁定卡车维护")
+    def click_excavator_lock_truck(self):
+        self.click(excavator_base_info['锁定卡车维护'])
 
     @allure.step("点击【新增】按钮")
     def click_add_btn(self):

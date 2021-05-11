@@ -1,0 +1,4 @@
+电铲名称: "xpath==//input[@placeholder='电铲名称']"
+查询: "xpath==//form[@class='el-form el-form--inline']/div/div/div/input"
+修改: "xpath==//tr[@class='el-table__row'][1]/td[3]/div/button"
+列表电铲名称: "xpath==//tr[@class='el-table__row'][1]/td[1]/div"

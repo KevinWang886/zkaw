@@ -4,6 +4,7 @@ from page.device_base_info.excavator_base_info import ExcavatorBaseInfoPage
 from page.login import LoginPage
 from page.device_base_info.device_base_info import DeviceBaseInfoPage
 from page.home_page import HomePage
+from page.device_base_info.excavator_kind import ExcavatorKind
 
 
 @pytest.fixture(scope='session')
@@ -31,4 +32,11 @@ def go_to_excavator_management(driver):
 def excavator_base_info(driver):
     excavator_base_info = ExcavatorBaseInfoPage(driver)
     return excavator_base_info
+
+
+@pytest.fixture(scope='session')
+def excavator_kind(driver):
+    excavator_kind = ExcavatorKind(driver)
+    return excavator_kind
+
 

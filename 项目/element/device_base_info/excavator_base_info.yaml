@@ -1,4 +1,8 @@
 电铲基本信息: "xpath==//aside/div/ul/li[3]/ul/li[1]/ul/li[1]"
+电铲物料维护: "xpath==//aside/div/ul/li[3]/ul/li[1]/ul/li[2]"
+电铲状态维护: "xpath==//aside/div/ul/li[3]/ul/li[1]/ul/li[3]"
+禁止卸点维护: "xpath==//aside/div/ul/li[3]/ul/li[1]/ul/li[4]"
+锁定卡车维护: "xpath==//aside/div/ul/li[3]/ul/li[1]/ul/li[5]"
 新增: "xpath==//*[@class='el-form el-form--inline']/div[2]/div/button[2]"
 电铲名称输入框: "xpath==//*[@class='el-form el-form--inline']/div[1]/div/div/input"
 查询: "xpath==//*[@class='el-form el-form--inline']/div[2]/div/button[1]"
