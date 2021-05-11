@@ -116,7 +116,7 @@ class Base():
     def is_text_in_element(self, locator, text):
         """返回bool值"""
         if not isinstance(locator, tuple):
-            raise log.logger("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
+            raise print("参数类型错误，locator必须是元祖类型：loc = ('id','value1')")
         try:
             result = WebDriverWait(self.driver, self.timeout, self.t).until(
                 EC.text_to_be_present_in_element(locator, text))

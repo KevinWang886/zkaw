@@ -28,15 +28,26 @@ class TestExcavatorKind:
 
     @allure.severity("blocker")
     @allure.story("电铲物料维护")
-    @allure.title("查询电铲")
+    @allure.title("查询电铲物料")
     def test_search_excavator(self, excavator_kind):
-        with allure.step("1、输入电铲名称"):
-            excavator_kind.input_excavator_name(excavator_name=
-                                                Base.get_data(excavator_kind, file_name='test_excavator_kind.yaml')
+        with allure.step("1、输入电铲名称并点击【查询】"):
+            excavator_kind.input_excavator_name(Base.get_data(excavator_kind, file_name='test_excavator_kind.yaml')
                                                 ['test_excavator_kind']['excavator_name'])
-        with allure.step("2、点击【查询】按钮"):
-            excavator_kind.click_query_btn()
-        with allure.step("3、断言："):
+        with allure.step("2、断言："):
             assert excavator_kind.get_excavator_name() == \
                    Base.get_data(excavator_kind, file_name='test_excavator_kind.yaml')['test_excavator_kind']\
                        ['excavator_name']
+
+    @allure.severity("blocker")
+    @allure.story("电铲物料维护")
+    @allure.title("修改电铲物料")
+    def test_modify_excavator_kind(self, excavator_kind):
+        with allure.step("1、点击'修改'"):
+            excavator_kind.click_modify_btn()
+        with allure.step("2、修改物料并【保存】"):
+            excavator_kind.select_kind()
+        time.sleep(1)
+        with allure.step("3、断言："):
+            assert excavator_kind.get_alert_msg() == \
+                   Base.get_data(excavator_kind, file_name='test_excavator_kind.yaml')['test_excavator_kind']\
+                       ['alert_msg']
