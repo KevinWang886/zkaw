@@ -1,8 +1,9 @@
 from base.base import Base
 from common.readelement import Element
 import allure
+from config.conf import ELEMENT_PATH
 
-login = Element('login_and_home', 'login')
+login = Element(ELEMENT_PATH, 'login_and_home', 'login')
 
 
 class LoginPage(Base):

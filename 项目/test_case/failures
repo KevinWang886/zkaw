@@ -16,3 +16,7 @@ test_case/test_excavator_kind.py::TestExcavatorKind::test_search_excavator
 test_case/test_excavator_kind.py::TestExcavatorKind::test_search_excavator
 test_case/test_excavator_kind.py::TestExcavatorKind::test_search_excavator
 test_case/test_excavator_kind.py::TestExcavatorKind::test_search_excavator
+test_case/test_login.py::TestLoin::test_login
+test_case/test_login.py::TestLoin::test_login
+test_case/test_login.py::TestLoin::test_login
+test_case/test_login.py::TestLoin::test_login

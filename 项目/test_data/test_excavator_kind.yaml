@@ -1,5 +1,4 @@
-test_excavator_kind:
-  account: wcy
-  password: 123456
-  excavator_name: B05
-  alert_msg: 操作成功
+account: "wcy"
+password: "123456"
+excavator_name: "B05"
+alert_msg: "操作成功"

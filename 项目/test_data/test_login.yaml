@@ -1,13 +1,9 @@
-test_url:
-  base_url: http://61.189.55.170:8074/
-
-test_login:
-  account: wcy
-  password: 123456
-  username: hi，wcy
-  title: 卡车调度系统
-  account_error: 帐号不能为空
-  password_error: 密码不能为空
-  error_msg: 账号或密码不正确
-  incorrect_account: wcy6345
-  incorrect_password: 111111
+account: "wcy"
+password: "password==123456"
+username: "hi，wcy"
+title: "卡车调度系统"
+account_error: "帐号不能为空"
+password_error: "密码不能为空"
+error_msg: "账号或密码不正确"
+incorrect_account: "wcy6345"
+incorrect_password: "111111"

@@ -1,8 +1,9 @@
 from base.base import Base
 from common.readelement import Element
 import allure
+from config.conf import ELEMENT_PATH
 
-device_base_info = Element('device_base_info', 'device_base_info')
+device_base_info = Element(ELEMENT_PATH, 'device_base_info', 'device_base_info')
 
 
 class DeviceBaseInfoPage(Base):

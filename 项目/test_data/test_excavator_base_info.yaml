@@ -1,5 +1,4 @@
-test_excavator_base_info:
-  account: wcy
-  password: 123456
-  excavator_name: B01
-  success_tip: 操作成功
+account: "wcy"
+password: "123456"
+excavator_name: "B01"
+success_tip: "操作成功"

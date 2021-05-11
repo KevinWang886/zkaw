@@ -2,8 +2,9 @@ from base.base import Base
 from common.readelement import Element
 import allure
 import random
+from config.conf import ELEMENT_PATH
 
-excavator_base_info = Element('device_base_info', 'excavator_base_info')
+excavator_base_info = Element(ELEMENT_PATH, 'device_base_info', 'excavator_base_info')
 
 
 class ExcavatorBaseInfoPage(Base):

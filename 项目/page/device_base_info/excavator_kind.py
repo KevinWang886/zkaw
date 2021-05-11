@@ -1,10 +1,10 @@
 import time
-
+from config.conf import ELEMENT_PATH
 from base.base import Base
 from common.readelement import Element
 import allure
 
-excavator_kind = Element('device_base_info', 'excavator_kind')
+excavator_kind = Element(ELEMENT_PATH, 'device_base_info', 'excavator_kind')
 
 
 class ExcavatorKind(Base):

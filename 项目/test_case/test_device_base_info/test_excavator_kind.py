@@ -1,7 +1,10 @@
 import time
 import pytest
 import allure
-from base.base import Base
+from common.readelement import Element
+from config.conf import TEST_DATA_PATH
+
+test_excavator_kind = Element(TEST_DATA_PATH,  '', 'test_excavator_kind').data
 
 
 class TestExcavatorKind:
@@ -10,10 +13,8 @@ class TestExcavatorKind:
     def open_page(self, login, home, go_to_excavator_management, excavator_base_info):
         login.open("/truck-dispatch/?#/login")
         time.sleep(0.5)
-        login.input_account(Base.get_data(login, file_name='test_excavator_kind.yaml')
-                            ['test_excavator_kind']['account'])
-        login.input_password(Base.get_data(login, file_name='test_excavator_kind.yaml')
-                             ['test_excavator_kind']['password'])
+        login.input_account(test_excavator_kind['account'])
+        login.input_password(test_excavator_kind['password'])
         login.click_login_btn()
         time.sleep(0.5)
         with allure.step("设备基础信息管理"):
@@ -31,12 +32,9 @@ class TestExcavatorKind:
     @allure.title("查询电铲物料")
     def test_search_excavator(self, excavator_kind):
         with allure.step("1、输入电铲名称并点击【查询】"):
-            excavator_kind.input_excavator_name(Base.get_data(excavator_kind, file_name='test_excavator_kind.yaml')
-                                                ['test_excavator_kind']['excavator_name'])
+            excavator_kind.input_excavator_name(test_excavator_kind['excavator_name'])
         with allure.step("2、断言："):
-            assert excavator_kind.get_excavator_name() == \
-                   Base.get_data(excavator_kind, file_name='test_excavator_kind.yaml')['test_excavator_kind']\
-                       ['excavator_name']
+            assert excavator_kind.get_excavator_name() == test_excavator_kind['excavator_name']
 
     @allure.severity("blocker")
     @allure.story("电铲物料维护")
@@ -48,6 +46,4 @@ class TestExcavatorKind:
             excavator_kind.select_kind()
         time.sleep(1)
         with allure.step("3、断言："):
-            assert excavator_kind.get_alert_msg() == \
-                   Base.get_data(excavator_kind, file_name='test_excavator_kind.yaml')['test_excavator_kind']\
-                       ['alert_msg']
+            assert excavator_kind.get_alert_msg() == test_excavator_kind['alert_msg']
