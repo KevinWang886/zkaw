@@ -20,3 +20,4 @@ test_case/test_login.py::TestLoin::test_login
 test_case/test_login.py::TestLoin::test_login
 test_case/test_login.py::TestLoin::test_login
 test_case/test_login.py::TestLoin::test_login
+test_case/test_device_base_info/test_excavator_base_info.py::TestExcavatorBaseInfo::test_modify_excavator

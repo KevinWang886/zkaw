@@ -13,6 +13,12 @@ class DeviceBaseInfoPage(Base):
     def click_excavator_info(self):
         self.click(device_base_info['电铲信息管理'])
 
+    def is_excavator_info_menu_open(self):
+        if self.find(device_base_info['电铲信息管理菜单']).get_attribute('style') == 'display: none;':
+            return True
+        else:
+            return False
+
     @allure.step("点击卸点信息管理")
     def click_uploading_info(self):
         self.click(device_base_info['卸点信息管理'])

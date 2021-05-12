@@ -10,20 +10,23 @@ test_excavator_base_info = Element(TEST_DATA_PATH,  '', 'test_excavator_base_inf
 
 class TestExcavatorBaseInfo():
 
-    @pytest.fixture(scope='session', autouse=True)
-    def open_page(self, login, home, go_to_excavator_management, excavator_base_info):
-        login.open("/truck-dispatch/?#/login")
-        time.sleep(0.5)
-        login.input_account(test_excavator_base_info['account'])
-        login.input_password(test_excavator_base_info['password'])
-        login.click_login_btn()
-        time.sleep(0.5)
-        with allure.step("设备基础信息管理"):
-            home.click_base_info()
-        time.sleep(0.5)
-        with allure.step("点击电铲信息管理"):
-            go_to_excavator_management.click_excavator_info()
-        time.sleep(0.5)
+    # @pytest.fixture(scope='session', autouse=True)
+    # def open_page(self, login, home, go_to_excavator_management, excavator_base_info):
+    #     login.open("/truck-dispatch/?#/login")
+    #     time.sleep(0.5)
+    #     login.input_account(test_excavator_base_info['account'])
+    #     login.input_password(test_excavator_base_info['password'])
+    #     login.click_login_btn()
+    #     time.sleep(0.5)
+    #     with allure.step("设备基础信息管理"):
+    #         home.click_base_info()
+    #     time.sleep(0.5)
+    @pytest.fixture(scope='module', autouse=True)
+    def go_to_excavator_base_info(self, go_to_excavator_management, excavator_base_info):
+        if go_to_excavator_management.is_excavator_info_menu_open():
+            with allure.step("点击电铲信息管理"):
+                go_to_excavator_management.click_excavator_info()
+            time.sleep(1)
         with allure.step("点击电铲基本信息"):
             excavator_base_info.click_excavator_base_info()
             time.sleep(0.5)
@@ -61,7 +64,7 @@ class TestExcavatorBaseInfo():
     @allure.severity("blocker")
     @allure.story("电铲基本信息")
     @allure.title("查询电铲")
-    def test_search_excavator(self, excavator_base_info):
+    def test_search_excavator(self,  excavator_base_info):
         with allure.step("1、输入电铲名称"):
             excavator_base_info.input_excavator_name(test_excavator_base_info['excavator_name'])
         with allure.step("2、点击【查询】按钮"):
@@ -86,10 +89,9 @@ class TestExcavatorBaseInfo():
             time.sleep(0.5)
         with allure.step("5、点击【确定】按钮"):
             excavator_base_info.click_confirm_btn()
+        time.sleep(1)
         with allure.step("6、断言：操作成功！"):
             assert excavator_base_info.get_alert_msg() == test_excavator_base_info['success_tip']
-        time.sleep(1)
-
 
 
 

@@ -13,7 +13,6 @@ class ExcavatorKind(Base):
     @allure.step("输入电铲名称")
     def input_excavator_name(self, excavator_name):
         self.send(excavator_kind['电铲名称'], excavator_name)
-        self.click_query_btn()
 
     @allure.step("点击【查询】按钮")
     def click_query_btn(self):
@@ -25,7 +24,8 @@ class ExcavatorKind(Base):
 
     @allure.step("获取查询列电铲名称")
     def get_excavator_name(self):
-        excavator_name = self.find(excavator_kind['列表电铲名称']).text
+        excavator_name = self.get_text(excavator_kind['列表电铲名称'])
+        print(excavator_name)
         return excavator_name
 
     @allure.step("获取修改页面物料")

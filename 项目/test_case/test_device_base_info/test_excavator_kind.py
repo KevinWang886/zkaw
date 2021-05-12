@@ -9,20 +9,24 @@ test_excavator_kind = Element(TEST_DATA_PATH,  '', 'test_excavator_kind').data
 
 class TestExcavatorKind:
 
-    @pytest.fixture(scope='session', autouse=True)
-    def open_page(self, login, home, go_to_excavator_management, excavator_base_info):
-        login.open("/truck-dispatch/?#/login")
-        time.sleep(0.5)
-        login.input_account(test_excavator_kind['account'])
-        login.input_password(test_excavator_kind['password'])
-        login.click_login_btn()
-        time.sleep(0.5)
-        with allure.step("设备基础信息管理"):
-            home.click_base_info()
-        time.sleep(0.5)
-        with allure.step("点击电铲信息管理"):
-            go_to_excavator_management.click_excavator_info()
-        time.sleep(0.5)
+    # @pytest.fixture(scope='session', autouse=True)
+    # def open_page(self, login, home, go_to_excavator_management, excavator_base_info):
+    #     login.open("/truck-dispatch/?#/login")
+    #     time.sleep(0.5)
+    #     login.input_account(test_excavator_kind['account'])
+    #     login.input_password(test_excavator_kind['password'])
+    #     login.click_login_btn()
+    #     time.sleep(0.5)
+    #     with allure.step("设备基础信息管理"):
+    #         home.click_base_info()
+    #     time.sleep(0.5)
+    @pytest.fixture(scope='module', autouse=True)
+    def go_to_excavator_kind(self, go_to_excavator_management, excavator_base_info):
+        # 判断电铲信息管理菜单是否打开
+        if go_to_excavator_management.is_excavator_info_menu_open():
+            with allure.step("点击电铲信息管理"):
+                go_to_excavator_management.click_excavator_info()
+            time.sleep(1)
         with allure.step("点击电铲物料维护"):
             excavator_base_info.click_excavator_kind()
             time.sleep(0.5)
@@ -33,8 +37,10 @@ class TestExcavatorKind:
     def test_search_excavator(self, excavator_kind):
         with allure.step("1、输入电铲名称并点击【查询】"):
             excavator_kind.input_excavator_name(test_excavator_kind['excavator_name'])
-        with allure.step("2、断言："):
-            assert excavator_kind.get_excavator_name() == test_excavator_kind['excavator_name']
+        excavator_kind.click_query_btn()
+        time.sleep(0.5)
+        # with allure.step("2、断言："):
+        assert test_excavator_kind['excavator_name'] == excavator_kind.get_excavator_name()
 
     @allure.severity("blocker")
     @allure.story("电铲物料维护")
@@ -44,6 +50,6 @@ class TestExcavatorKind:
             excavator_kind.click_modify_btn()
         with allure.step("2、修改物料并【保存】"):
             excavator_kind.select_kind()
-        time.sleep(1)
+        time.sleep(0.5)
         with allure.step("3、断言："):
             assert excavator_kind.get_alert_msg() == test_excavator_kind['alert_msg']
