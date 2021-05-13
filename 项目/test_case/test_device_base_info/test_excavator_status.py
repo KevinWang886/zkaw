@@ -34,7 +34,7 @@ class TestExcavatorStatus:
     @allure.severity("blocker")
     @allure.story("电铲状态维护")
     @allure.title("修改电铲状态")
-    def test_query_excavator(self, excavator_status):
+    def test_modify_excavator_status(self, excavator_status):
         with allure.step("1、点击'修改'"):
             excavator_status.click_modify_btn()
         time.sleep(0.5)
