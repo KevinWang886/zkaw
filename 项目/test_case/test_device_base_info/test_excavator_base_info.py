@@ -10,23 +10,12 @@ test_excavator_base_info = Element(TEST_DATA_PATH,  '', 'test_excavator_base_inf
 
 class TestExcavatorBaseInfo():
 
-    # @pytest.fixture(scope='session', autouse=True)
-    # def open_page(self, login, home, go_to_excavator_management, excavator_base_info):
-    #     login.open("/truck-dispatch/?#/login")
-    #     time.sleep(0.5)
-    #     login.input_account(test_excavator_base_info['account'])
-    #     login.input_password(test_excavator_base_info['password'])
-    #     login.click_login_btn()
-    #     time.sleep(0.5)
-    #     with allure.step("设备基础信息管理"):
-    #         home.click_base_info()
-    #     time.sleep(0.5)
     @pytest.fixture(scope='module', autouse=True)
     def go_to_excavator_base_info(self, go_to_excavator_management, excavator_base_info):
         if go_to_excavator_management.is_excavator_info_menu_open():
             with allure.step("点击电铲信息管理"):
                 go_to_excavator_management.click_excavator_info()
-            time.sleep(1)
+        time.sleep(0.5)
         with allure.step("点击电铲基本信息"):
             excavator_base_info.click_excavator_base_info()
             time.sleep(0.5)
