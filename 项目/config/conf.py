@@ -23,4 +23,4 @@ LOG_STREAM_LEVEL = 'debug'  # 屏幕输出流
 LOG_FILE_LEVEL = 'info'   # 文件输出流
 # 日志命名
 LOG_FOLDER = os.path.join(BASE_DIR, 'logs')
-LOG_FILE_NAME = os.path.join(LOG_FOLDER, datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S') + '.log')
+LOG_FILE_NAME = os.path.join(LOG_FOLDER, '{}.log'.format(datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S')))
