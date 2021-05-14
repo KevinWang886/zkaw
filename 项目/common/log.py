@@ -10,10 +10,10 @@ class LoggerHandler:
         log_path = self.log_path[:self.log_path.rfind('/')]
         if not os.path.exists(log_path):
             os.mkdir(log_path)
+
         # 创建日志对象
         self.logger = logging.getLogger()
-        # 设置日志级别o
-        # self.logger.setLevel(self.logger_level)
+
         if not self.logger.handlers:
             self.logger.setLevel(logging.DEBUG)
 
@@ -40,8 +40,5 @@ class LoggerHandler:
 
 
 logger = LoggerHandler().logger
-# def logger():
-#     if not os.path.exists(conf.LOG_FOLDER):
-#         os.mkdir(conf.LOG_FOLDER)
-#     return LoggerHandler().get_logger
+
 

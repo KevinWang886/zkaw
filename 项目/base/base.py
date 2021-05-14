@@ -13,14 +13,6 @@ from config.conf import TEST_DATA_PATH
 """封装selenium基本操作"""
 
 
-# class LocatorTypeError(Exception):
-#     pass
-#
-#
-# class ElementNotFound(Exception):
-#     pass
-
-
 class Base():
     """基于原生的selenium做二次封装"""
 
