@@ -6,6 +6,7 @@ from config.conf import ELEMENT_PATH
 home = Element(ELEMENT_PATH, 'login_and_home', 'home')
 
 
+# 卡车调度系统首页
 class HomePage(Base):
     """主页类"""
     @allure.step("获取登录用户名")

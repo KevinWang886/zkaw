@@ -7,6 +7,7 @@ from config.conf import ELEMENT_PATH
 excavator_base_info = Element(ELEMENT_PATH, 'device_base_info', 'excavator_base_info')
 
 
+# 电铲基本信息管理页面
 class ExcavatorBaseInfoPage(Base):
     """电铲基本信息管理类"""
 

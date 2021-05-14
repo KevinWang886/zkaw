@@ -7,6 +7,7 @@ import allure
 excavator_kind = Element(ELEMENT_PATH, 'device_base_info', 'excavator_kind')
 
 
+# 电铲物料维护页面
 class ExcavatorKind(Base):
     """电铲物料维护类"""
 

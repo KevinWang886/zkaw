@@ -10,6 +10,7 @@ import allure
 excavator_status = Element(ELEMENT_PATH, 'device_base_info', 'excavator_status')
 
 
+# 电铲状态维护页面
 class ExcavatorStatus(Base):
     '''电铲状态维护类'''
 

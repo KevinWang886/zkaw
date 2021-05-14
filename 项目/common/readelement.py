@@ -24,5 +24,3 @@ class Element:
             return name, value
         raise logger.info("{}中不存在关键字：{}".format(self.file_name, item))
 
-
-

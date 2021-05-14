@@ -6,6 +6,7 @@ from config.conf import ELEMENT_PATH
 login = Element(ELEMENT_PATH, 'login_and_home', 'login')
 
 
+# 登录页面
 class LoginPage(Base):
     """登录类"""
     @allure.step("输入账号")
