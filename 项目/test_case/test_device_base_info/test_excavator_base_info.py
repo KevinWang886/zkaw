@@ -5,7 +5,7 @@ import random
 from common.readelement import Element
 from config.conf import TEST_DATA_PATH
 
-test_excavator_base_info = Element(TEST_DATA_PATH,  '', 'test_excavator_base_info').data
+test_excavator_base_info = Element(TEST_DATA_PATH,  'test_device_base_info', 'test_excavator_base_info').data
 
 
 class TestExcavatorBaseInfo():

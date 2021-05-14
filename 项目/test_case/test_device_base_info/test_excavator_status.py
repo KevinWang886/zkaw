@@ -4,7 +4,7 @@ import allure
 from common.readelement import Element
 from config.conf import TEST_DATA_PATH
 
-test_excavator_status = Element(TEST_DATA_PATH, '', 'test_excavator_status').data
+test_excavator_status = Element(TEST_DATA_PATH, 'test_device_base_info', 'test_excavator_status').data
 
 
 class TestExcavatorStatus:

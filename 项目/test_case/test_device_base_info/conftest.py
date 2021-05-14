@@ -45,6 +45,5 @@ def open_page(login, home):
     time.sleep(0.5)
     with allure.step("设备基础信息管理"):
         home.click_base_info()
-    time.sleep(0.5)
 
 
