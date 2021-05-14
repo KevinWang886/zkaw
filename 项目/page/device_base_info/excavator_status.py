@@ -11,6 +11,7 @@ excavator_status = Element(ELEMENT_PATH, 'device_base_info', 'excavator_status')
 
 
 class ExcavatorStatus(Base):
+    '''电铲状态维护类'''
 
     @allure.step("输入电铲名称")
     def input_excavator_name(self, excavator_name):
